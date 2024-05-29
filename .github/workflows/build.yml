@@ -65,7 +65,7 @@ jobs:
         # fi
     - uses: actions/upload-artifact@v4
       with:
-        name: Upload Artifact
+        name: size-${{ matrix.os }}
         path: |
           ${{runner.workspace}}/build/Debug/size.exe
           ${{runner.workspace}}/build/Release/size.exe
