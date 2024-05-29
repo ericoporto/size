@@ -10,7 +10,7 @@ int GetFreeSizeInMB(const std::string &path)
     const uint64_t MB = 1024 * 1024;
     uint64_t freeBytes;
     LPCSTR p = path.c_str();
-    if(GetDiskFreeSpaceEx (p, (PULARGE_INTEGER)&freeBytes,
+    if(GetDiskFreeSpaceExA (p, (PULARGE_INTEGER)&freeBytes,
                                    nullptr,
                                    nullptr) != 0)
     {
