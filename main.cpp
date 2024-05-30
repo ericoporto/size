@@ -2,7 +2,8 @@
 #include <string>
 
 
-#ifdef _WIN32
+#if defined(_WIN32)
+// desktop win32 software
 #include "Windows.h"
 
 int GetFreeSizeInMB(const std::string &path)
@@ -19,8 +20,16 @@ int GetFreeSizeInMB(const std::string &path)
 
     return 0;
 }
+#elif defined(__APPLE__)
+// I am assuming macOS here
+extern int freeDiskspace(const char path[PATH_MAX]);
+
+int GetFreeSizeInMB(const std::string &path)
+{
+    return freeDiskspace(path.c_str());
+}
+
 #else
-// TO-DO: write special case for macOS! The below will build but won't work.
 // assume Linux for now
 #include <unistd.h>
 #include <sys/statvfs.h>
