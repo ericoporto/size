@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 
-int freeDiskspace(const char path[PATH_MAX])
+int AppleGetFreeSizeInMB(const char path[PATH_MAX])
 {
     @autoreleasepool {
         NSString* dirpath = @(path);

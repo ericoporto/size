@@ -22,11 +22,11 @@ int GetFreeSizeInMB(const std::string &path)
 }
 #elif defined(__APPLE__)
 // I am assuming macOS here
-extern int freeDiskspace(const char path[PATH_MAX]);
+extern int AppleGetFreeSizeInMB(const char path[PATH_MAX]);
 
 int GetFreeSizeInMB(const std::string &path)
 {
-    return freeDiskspace(path.c_str());
+    return AppleGetFreeSizeInMB(path.c_str());
 }
 #else
 // assume Linux for now
