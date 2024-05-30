@@ -28,7 +28,6 @@ int GetFreeSizeInMB(const std::string &path)
 {
     return freeDiskspace(path.c_str());
 }
-
 #else
 // assume Linux for now
 #include <unistd.h>
