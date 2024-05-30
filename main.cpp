@@ -23,7 +23,6 @@ int GetFreeSizeInMB(const std::string &path)
 // TO-DO: write special case for macOS! The below will build but won't work.
 // assume Linux for now
 #include <unistd.h>
-#include <stdbool.h>
 #include <sys/statvfs.h>
 
 unsigned long rounddiv(unsigned long num, unsigned long divisor) {
@@ -32,11 +31,12 @@ unsigned long rounddiv(unsigned long num, unsigned long divisor) {
 
 int GetFreeSizeInMB(const std::string &path)
 {
-    struct statvfs diskData;
+    struct statvfs diskData{};
     statvfs(path.c_str(), &diskData);
     unsigned long available = diskData.f_bavail * diskData.f_bsize;
     if(access(path.c_str(), W_OK) == 0) {
-        return rounddiv(available, 1024*1024);
+        // only returns value in writeable dir
+        return static_cast<int>(rounddiv(available, 1024*1024));
     } else {
         return 0;
     }
