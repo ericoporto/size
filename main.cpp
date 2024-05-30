@@ -20,6 +20,7 @@ int GetFreeSizeInMB(const std::string &path)
     return 0;
 }
 #else
+// TO-DO: write special case for macOS! The below will build but won't work.
 // assume Linux for now
 #include <unistd.h>
 #include <stdbool.h>
